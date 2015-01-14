@@ -5,3 +5,12 @@ html, body, #map {
   height: 100%;
   overflow: hidden;
 }
+
+path, line, polyline {
+  stroke: #000;
+  stroke-width: 2px;
+}
+
+path {
+  fill: transparent;
+}
