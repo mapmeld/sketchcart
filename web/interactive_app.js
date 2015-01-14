@@ -14,7 +14,7 @@ if(window.location.href.indexOf("#map=") > -1){
 
 var map = L.mapbox.map("map")
   .setView([init_lat, init_lng], init_zoom)
-  .addControl(L.mapbox.geocoderControl('mapmeld.map-x20zuxfw'))
+  .addControl(L.mapbox.geocoderControl('mapbox.places-v1'))
   .addControl(L.mapbox.shareControl());
 
 map.on('moveend', function(){
