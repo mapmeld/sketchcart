@@ -18,6 +18,8 @@ function loadStreets(error, streets) {
     .scale(2800000)
     .translate([400, 400]);
 
+  streets.features.reverse();
+
   var loadThree = function(i) {
     if (i >= streets.features.length) {
       return;
@@ -36,7 +38,7 @@ function loadStreets(error, streets) {
 
     var ww = new Walkway({
       selector: '#map_' + i,
-      duration: '200'
+      duration: '350'
     });
 
     ww.draw(function() {

@@ -18,6 +18,8 @@ function loadStreets(error, streets) {
     .scale(2800000)
     .translate([400, 400]);
 
+  streets.features.reverse();
+
   svg.append("path")
     .datum(streets)
     .attr("id", "test")
