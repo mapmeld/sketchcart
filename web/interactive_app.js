@@ -27,7 +27,7 @@ map.on('moveend', function(){
 // Add a fake GeoJSON line to coerce Leaflet into creating the <svg> tag that d3_geoJson needs
 new L.geoJson({"type": "LineString","coordinates":[[0,0],[0,0]]}).addTo(map);
 
-$("#map").append($("<div>").css({ position: "fixed", background: "#ccc", opacity: 0.85, bottom: 0, right: 0 }).html("Data &copy 2015 OpenStreetMap contributors - Vector Tiles from OSM US - Drawn by <a href='https://github.com/mapmeld/sketchcart'>sketchcart</a>"));
+$("#map").append($("<div>").css({ position: "fixed", background: "#ccc", opacity: 0.85, bottom: 0, right: 0 }).html("Data &copy 2015 OpenStreetMap contributors - Vector Tiles from OSM US - Drawn by <a href='https://github.com/mapmeld/sketchcart'>sketchcart</a> Written by <a href='https://twitter.com/mapmeld'>@mapmeld</a>"));
 
 L.TileLayer.d3_geoJSON =  L.TileLayer.extend({
   onAdd : function(map) {
