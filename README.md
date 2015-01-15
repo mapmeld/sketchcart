@@ -1,6 +1,6 @@
 # Sketchcart
 
-Mix of ideas which I've had since I saw [Walkway.js]()
+Mix of ideas which I've had since I saw [Walkway.js](http://www.connoratherton.com/walkway)
 
 ## How to use with a custom map
 
