@@ -49,20 +49,31 @@ L.TileLayer.d3_geoJSON =  L.TileLayer.extend({
 
     if (!tile.nodes && !tile.xhr) {
       tile.xhr = d3.json(this.getTileUrl(tilePoint),function(geoJson) {
-        tile.xhr = null;
-        tile.nodes = d3.select(map._container).select("svg").append("g");
-        tile.nodes.attr("id", "m" + tilePoint.x + "-" + tilePoint.y + "-" + tilePoint.z);
-        tile.nodes.selectAll("path")
-          .data(geoJson.features).enter()
-          .append("path")
-          .attr("d", self._path)
-          .attr("class", self.options.class)
-          .attr("style", self.options.style);
-        var ww = new Walkway({
-          selector: '#m' + tilePoint.x + "-" + tilePoint.y + "-" + tilePoint.z,
-          duration: '3500'
-        });
-        ww.draw();
+        var cutCount = Math.ceil(geoJson.features.length / 5);
+        var drawFeatureCut = function(stage) {
+          tile.xhr = null;
+          tile.nodes = d3.select(map._container).select("svg").append("g");
+          tile.nodes.attr("id", "m" + tilePoint.x + "-" + tilePoint.y + "-" + tilePoint.z + "-" + stage);
+          tile.nodes.selectAll("path")
+            .data(geoJson.features.slice(cutCount * stage, cutCount * (stage + 1) ) ).enter()
+            .append("path")
+            .attr("d", self._path)
+            .attr("class", self.options.class)
+            .attr("style", self.options.style);
+          var ww = new Walkway({
+            selector: '#m' + tilePoint.x + "-" + tilePoint.y + "-" + tilePoint.z + "-" + stage,
+            duration: '5500'
+          });
+          ww.draw();
+
+          setTimeout(function() {
+            if (stage < 4) {
+              drawFeatureCut(stage + 1);
+            }
+          }, 5500);
+        };
+
+        drawFeatureCut(0);
       });
     }
   }
