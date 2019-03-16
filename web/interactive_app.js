@@ -49,6 +49,7 @@ L.TileLayer.d3_geoJSON =  L.TileLayer.extend({
 
     if (!tile.nodes && !tile.xhr) {
       tile.xhr = d3.json(this.getTileUrl(tilePoint),function(geoJson) {
+        geoJson.features = geoJson.roads.features;
         var cutCount = Math.ceil(geoJson.features.length / 5);
         var drawFeatureCut = function(stage) {
           tile.xhr = null;
@@ -79,7 +80,7 @@ L.TileLayer.d3_geoJSON =  L.TileLayer.extend({
   }
 });
 
-new L.TileLayer.d3_geoJSON("http://tile.openstreetmap.us/vectiles-highroad/{z}/{x}/{y}.json", {
+new L.TileLayer.d3_geoJSON("https://tile.nextzen.org/tilezen/vector/v1/512/all/{z}/{x}/{y}.json?api_key=fgUyV10ySEuZkdmyOjGWTA", {
   class: "road",
   style: function(d) { return "stroke: #000; stroke-width: 1.5;"; }
 }).addTo(map);
